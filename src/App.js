@@ -1,23 +1,16 @@
-import logo from "./logo.svg";
-import "./App.css";
+import NavBar from "./components/NavBar/NavBar";
+import Footer from "./components/Footer/Footer";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 
 function App() {
+  const saludo1 = "Hola Mundillo!";
+  const texto1 = "Sample text";
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Proyecto de <strong>Matias Yogui </strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      <ItemListContainer saludo={saludo1} texto={texto1} />
+      <Footer />
     </div>
   );
 }
