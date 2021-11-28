@@ -1,24 +1,16 @@
-import { useState } from "react";
 import Button from "@mui/material/Button";
+import { useCounter } from "../hooks/useCounter";
 
-export const ItemCount = (props) => {
-  const [cantidad, setCantidad] = useState(0);
-
-  const handleRestar = () => {
-    if (cantidad > 0) setCantidad(cantidad - 1);
-  };
-
-  const handleSumar = () => {
-    if (cantidad < props.stock) setCantidad(cantidad + 1);
-  };
+export const ItemCount = ({ stock }) => {
+  const { counter, incrementar, decrementar } = useCounter(stock);
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleRestar}>
+      <Button variant="outlined" onClick={decrementar}>
         -
       </Button>
-      <span>{cantidad}</span>
-      <Button variant="outlined" onClick={handleSumar}>
+      <span>{counter}</span>
+      <Button variant="outlined" onClick={incrementar}>
         +
       </Button>
     </div>
