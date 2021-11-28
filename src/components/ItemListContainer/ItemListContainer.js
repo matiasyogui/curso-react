@@ -1,3 +1,5 @@
+import { ItemCount } from "../ItemCount/ItemCount";
+
 const ItemListContainer = ({ saludo, texto } /* props */) => {
   /* Se puede desestructurar props en el parametro 
   const { saludo, texto } = props;
@@ -5,8 +7,7 @@ const ItemListContainer = ({ saludo, texto } /* props */) => {
 
   return (
     <div>
-      <h1>{saludo}</h1>
-      <p>{texto}</p>
+      <ItemCount stock="10" />
     </div>
   );
 };
