@@ -5,15 +5,14 @@ import { CartView } from "./components/CartView/CartView";
 import { ItemDetailContainer } from "./components/ItemDetailContainer/ItemDetailContainer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ErrorComponent } from "./components/ErrorComponent/ErrorComponent";
-import { CartContext } from "./context/CartContext";
+import { CartProvider } from "./context/CartContext";
 
 function App() {
   // El context se maneja desde un punto alto.
-  const cart = [];
 
   return (
-    <CartContext.Provider value={cart}>
-      <BrowserRouter>
+    <CartProvider>
+      <BrowserRouter className="container">
         <NavBar />
 
         <Routes>
@@ -27,7 +26,7 @@ function App() {
 
         <Footer />
       </BrowserRouter>
-    </CartContext.Provider>
+    </CartProvider>
   );
 }
 
