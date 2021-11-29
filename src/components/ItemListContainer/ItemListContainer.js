@@ -1,7 +1,8 @@
 import { pedirDatos } from "../helpers/pedirDatos";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ItemList } from "../ItemList/ItemList";
 import { useParams } from "react-router";
+import { CartContext } from "../../context/CartContext";
 
 const ItemListContainer = (/* props */) => {
   /* Se puede desestructurar props en el parametro 
@@ -10,6 +11,10 @@ const ItemListContainer = (/* props */) => {
 
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const cart = useContext(CartContext);
+
+  console.log(cart);
 
   const params = useParams();
   console.log(params);
