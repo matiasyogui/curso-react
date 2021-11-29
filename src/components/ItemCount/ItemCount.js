@@ -1,9 +1,6 @@
 import Button from "@mui/material/Button";
-import { useCounter } from "../hooks/useCounter";
 
-export const ItemCount = ({ stock }) => {
-  const { counter, incrementar, decrementar } = useCounter(stock);
-
+export const ItemCount = ({ incrementar, decrementar, add, counter }) => {
   return (
     <div>
       <Button variant="outlined" onClick={decrementar}>
@@ -13,6 +10,11 @@ export const ItemCount = ({ stock }) => {
       <Button variant="outlined" onClick={incrementar}>
         +
       </Button>
+      <div>
+        <Button variant="contained" onClick={add}>
+          Agregar
+        </Button>
+      </div>
     </div>
   );
 };
