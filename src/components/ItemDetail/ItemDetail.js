@@ -34,5 +34,3 @@ export const ItemDetail = ({ item }) => {
     </div>
   );
 };
-
-a;
