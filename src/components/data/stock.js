@@ -1,0 +1,42 @@
+export const stock = [
+  {
+    id: 1,
+    nombre: "Prod1",
+    precio: 1000,
+    descripcion: "Descripcion Prod1",
+    image: "https://via.placeholder.com/200",
+    stock: 10,
+  },
+  {
+    id: 2,
+    nombre: "Prod2",
+    precio: 2000,
+    descripcion: "Descripcion Prod2",
+    image: "https://via.placeholder.com/200",
+    stock: 10,
+  },
+  {
+    id: 3,
+    nombre: "Prod3",
+    precio: 3000,
+    descripcion: "Descripcion Prod3",
+    image: "https://via.placeholder.com/200",
+    stock: 10,
+  },
+  {
+    id: 4,
+    nombre: "Prod4",
+    precio: 4000,
+    descripcion: "Descripcion Prod4",
+    image: "https://via.placeholder.com/200",
+    stock: 10,
+  },
+  {
+    id: 5,
+    nombre: "Prod5",
+    precio: 5000,
+    descripcion: "Descripcion Prod5",
+    image: "https://via.placeholder.com/200",
+    stock: 10,
+  },
+];
