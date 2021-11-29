@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { ItemCount } from "../ItemCount/ItemCount";
+import { Button } from "@mui/material";
 
 export const Item = ({ item }) => {
   return (
@@ -28,7 +29,7 @@ export const Item = ({ item }) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <ItemCount stock={item.stock} />
+          <Button>Ver màs!</Button>
         </CardActions>
       </Card>
     </div>
