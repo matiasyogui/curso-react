@@ -4,7 +4,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { ItemCount } from "../ItemCount/ItemCount";
+import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 
 export const Item = ({ item }) => {
@@ -27,9 +27,14 @@ export const Item = ({ item }) => {
           <Typography variant="body2" color="text.secondary">
             {item.descripcion}
           </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {item.category}
+          </Typography>
         </CardContent>
         <CardActions>
-          <Button>Ver màs!</Button>
+          <Link to={`/detail/${item.id}`}>
+            <Button>Ver màs!</Button>
+          </Link>
         </CardActions>
       </Card>
     </div>

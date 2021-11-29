@@ -1,15 +1,24 @@
 import "./NavBar.scss";
 import { Cart } from "../Cart/Cart";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <header className="navbar">
-      <h1>Hola Mundo!</h1>
+      <h1>
+        <Link to="/">e-Commerce</Link>
+      </h1>
       <nav>
         <ul>
-          <li>Enlance1</li>
-          <li>Enlance2</li>
-          <li>Enlance3</li>
+          <li>
+            <Link to="/category/remeras">Remeras</Link>
+          </li>
+          <li>
+            <Link to="/category/buzos">Buzos</Link>
+          </li>
+          <li>
+            <Link to="/category/zapatillas">Zapatillas</Link>
+          </li>
           <Cart />
         </ul>
       </nav>

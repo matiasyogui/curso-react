@@ -1,8 +1,9 @@
 import { pedirDatos } from "../helpers/pedirDatos";
 import { useState, useEffect } from "react";
 import { ItemList } from "../ItemList/ItemList";
+import { useParams } from "react-router";
 
-const ItemListContainer = ({ saludo, texto } /* props */) => {
+const ItemListContainer = (/* props */) => {
   /* Se puede desestructurar props en el parametro 
   const { saludo, texto } = props;
    */
@@ -10,11 +11,18 @@ const ItemListContainer = ({ saludo, texto } /* props */) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const params = useParams();
+  console.log(params);
+
   useEffect(() => {
     setLoading(true);
     pedirDatos()
       .then((resp) => {
-        setItems(resp);
+        if (params.categoryid) {
+          setItems(resp.filter((item) => item.category === params.categoryid));
+        } else {
+          setItems(resp);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -23,7 +31,7 @@ const ItemListContainer = ({ saludo, texto } /* props */) => {
         console.log("Peticion finalizada.");
         setLoading(false);
       });
-  }, []);
+  }, [params.categoryid]);
 
   return (
     <div>

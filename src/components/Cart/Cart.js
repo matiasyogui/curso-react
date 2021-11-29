@@ -1,10 +1,13 @@
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "./Cart.scss";
 
 export const Cart = () => {
   return (
     <div className="cart">
-      <FaShoppingCart />
+      <Link to="/cartview">
+        <FaShoppingCart />
+      </Link>
     </div>
   );
 };
