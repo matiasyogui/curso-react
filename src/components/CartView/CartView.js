@@ -64,7 +64,10 @@ export const CartView = () => {
           </Button>
         </>
       ) : (
-        <h4>¿Que estas esperando para aprovechar nuestros precios?</h4>
+        <>
+          <h2>Tu carrito se encuentra vacio.</h2>
+          <h4>¿Que estas esperando para aprovechar nuestros precios?</h4>
+        </>
       )}
     </div>
   );

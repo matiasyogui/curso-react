@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { ItemList } from "../ItemList/ItemList";
 import { useParams } from "react-router";
 import { CartContext } from "../../context/CartContext";
+import { Loader } from "../Loader/Loader";
 
 const ItemListContainer = (/* props */) => {
   /* Se puede desestructurar props en el parametro 
@@ -43,7 +44,7 @@ const ItemListContainer = (/* props */) => {
       <h2>Productos</h2>
       <hr />
       <div className="itemList">
-        {loading ? <h2>Cargando productos...</h2> : <ItemList items={items} />}
+        {loading ? <Loader /> : <ItemList items={items} />}
       </div>
     </div>
   );
