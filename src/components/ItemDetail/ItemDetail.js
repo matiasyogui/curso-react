@@ -43,6 +43,7 @@ export const ItemDetail = ({ item }) => {
           decrementar={decrementar}
           add={handleAgregar}
           counter={counter}
+          max={item.stock}
         />
       ) : (
         <Button onClick={handleCart}>Terminar mi compra.</Button>
