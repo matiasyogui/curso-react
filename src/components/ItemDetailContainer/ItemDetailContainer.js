@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { pedirItem } from "../helpers/pedirDatos";
 import { ItemDetail } from "../ItemDetail/ItemDetail";
 import { Loader } from "../Loader/Loader";
+import { collection, getDoc, doc } from "firebase/firestore/lite";
+import { db } from "../../firebase/config";
 
 export const ItemDetailContainer = () => {
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const params = useParams();
-  console.log(params.itemid);
 
   useEffect(() => {
     setLoading(true);
 
-    pedirItem(Number(params.itemid))
+    const productos = collection(db, "items");
+
+    const docRef = doc(productos, params.itemid);
+
+    getDoc(docRef)
       .then((resp) => {
-        setItem(resp);
-      })
-      .catch((error) => {
-        console.log(error);
+        setItem({
+          id: resp.id,
+          ...resp.data(),
+        });
       })
       .finally(() => {
-        console.log("Peticion finalizada.");
         setLoading(false);
       });
   }, [params.itemid]);

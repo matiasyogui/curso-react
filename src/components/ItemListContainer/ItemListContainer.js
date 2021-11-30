@@ -1,9 +1,9 @@
-import { pedirDatos } from "../helpers/pedirDatos";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { ItemList } from "../ItemList/ItemList";
 import { useParams } from "react-router";
-import { CartContext } from "../../context/CartContext";
 import { Loader } from "../Loader/Loader";
+import { collection, getDocs, query, where } from "firebase/firestore/lite";
+import { db } from "../../firebase/config";
 
 const ItemListContainer = (/* props */) => {
   /* Se puede desestructurar props en el parametro 
@@ -13,28 +13,31 @@ const ItemListContainer = (/* props */) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const cart = useContext(CartContext);
-
-  console.log(cart);
-
   const params = useParams();
-  console.log(params);
 
   useEffect(() => {
     setLoading(true);
-    pedirDatos()
+
+    //ref a la coleccion
+    const productos = collection(db, "items");
+
+    //armamos la query a la db
+    const q = params.categoryid
+      ? query(productos, where("category", "==", params.categoryid))
+      : productos;
+
+    getDocs(q)
       .then((resp) => {
-        if (params.categoryid) {
-          setItems(resp.filter((item) => item.category === params.categoryid));
-        } else {
-          setItems(resp);
-        }
+        const prods = resp.docs.map((doc) => {
+          return {
+            id: doc.id, //agregamos el id de la db al item
+            ...doc.data(),
+          };
+        });
+
+        setItems(prods);
       })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        console.log("Peticion finalizada.");
+      .finally((resp) => {
         setLoading(false);
       });
   }, [params.categoryid]);
