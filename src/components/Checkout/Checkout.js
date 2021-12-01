@@ -1,18 +1,35 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Button from "@mui/material/Button";
 import { CartContext } from "../../context/CartContext";
-import { Timestamp, collection, addDoc } from "firebase/firestore/lite";
+import {
+  Timestamp,
+  collection,
+  addDoc,
+  getDocs,
+  writeBatch,
+  query,
+  where,
+  documentId,
+} from "firebase/firestore/lite";
 import { db } from "../../firebase/config";
+import { Link } from "react-router-dom";
+import TextField from "@mui/material/TextField";
 
 export const Checkout = () => {
-  const { cart, totalComprado } = useContext(CartContext);
+  const { cart, totalComprado, vaciarCarrito } = useContext(CartContext);
+
+  const [orden, setOrden] = useState(null);
+
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+  const [tel, setTel] = useState();
 
   const generarOrden = () => {
     const orden = {
       comprador: {
-        nombre: "Matias Yogui",
-        email: "myogui@123.com",
-        tel: 123456789,
+        nombre: nombre,
+        email: email,
+        tel: tel,
       },
 
       items: cart,
@@ -20,12 +37,52 @@ export const Checkout = () => {
       date: Timestamp.fromDate(new Date()),
     };
 
-    const orders = collection(db, "orders");
+    const batch = writeBatch(db);
 
-    addDoc(orders, orden).then((resp) => {
-      console.log(resp);
-      console.log(resp.id);
+    const orders = collection(db, "orders");
+    const items = collection(db, "items");
+
+    const q = query(
+      items,
+      where(
+        documentId(),
+        "in",
+        cart.map((item) => item.id)
+      )
+    );
+
+    const sinStock = [];
+
+    getDocs(q).then((resp) => {
+      resp.forEach((doc) => {
+        const itemAActualizar = cart.find((item) => item.id === doc.id);
+
+        if (doc.data().stock >= itemAActualizar.cantidad) {
+          batch.update(doc.ref, {
+            stock: doc.data().stock - itemAActualizar.cantidad,
+          });
+        } else {
+          sinStock.push(itemAActualizar);
+        }
+      });
+
+      if (sinStock === 0) {
+        batch.commit();
+        addDoc(orders, orden).then((resp) => {
+          setOrden({
+            id: resp.id,
+          });
+          vaciarCarrito();
+        });
+      } else {
+        alert("Item sin stock :(");
+      }
     });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    generarOrden();
   };
 
   return (
@@ -33,9 +90,41 @@ export const Checkout = () => {
       <h2>Finalizar la compra</h2>
       <hr />
 
-      <Button variant="contained" color="success" onClick={generarOrden}>
-        Finalizar
-      </Button>
+      {orden ? (
+        <>
+          <h3>Gracias por la compra realizada {orden.nombre}</h3>
+          <p>Su numero de compra es {orden.id}</p>
+
+          <Link to="/">Volver a inicio</Link>
+        </>
+      ) : (
+        <>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              required
+              id="outlined-required"
+              label="Nombre completo"
+              onChange={(e) => setNombre(e.target.value)} //handleNombre
+            />
+            <TextField
+              required
+              id="outlined-required"
+              label="Email"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)} //handleEmail
+            />
+            <TextField
+              required
+              id="outlined-required"
+              label="telefono"
+              onChange={(e) => setTel(e.target.value)} //handleTel
+            />
+            <Button variant="contained" color="success" type="submit">
+              Finalizar
+            </Button>
+          </form>
+        </>
+      )}
     </div>
   );
 };
