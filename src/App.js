@@ -6,6 +6,7 @@ import { ItemDetailContainer } from "./components/ItemDetailContainer/ItemDetail
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ErrorComponent } from "./components/ErrorComponent/ErrorComponent";
 import { CartProvider } from "./context/CartContext";
+import { Checkout } from "./components/Checkout/Checkout";
 
 function App() {
   // El context se maneja desde un punto alto.
@@ -21,6 +22,7 @@ function App() {
           <Route path="/category/:categoryid" element={<ItemListContainer />} />
           <Route path="/cart" element={<CartView />} />
           <Route path="/detail/:itemid" element={<ItemDetailContainer />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="*" element={<ErrorComponent />} />
         </Routes>
 
