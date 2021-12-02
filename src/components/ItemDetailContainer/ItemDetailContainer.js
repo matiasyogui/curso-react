@@ -4,6 +4,7 @@ import { ItemDetail } from "../ItemDetail/ItemDetail";
 import { Loader } from "../Loader/Loader";
 import { collection, getDoc, doc } from "firebase/firestore/lite";
 import { db } from "../../firebase/config";
+import "./ItemDetailContainer.scss";
 
 export const ItemDetailContainer = () => {
   const [item, setItem] = useState(null);
@@ -31,8 +32,9 @@ export const ItemDetailContainer = () => {
   }, [params.itemid]);
 
   return (
-    <div>
+    <div className="itemDetailContainer">
       <h2>Item Details</h2>
+      <hr />
       {loading ? <Loader /> : <ItemDetail item={item} />}
     </div>
   );

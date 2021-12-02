@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="footer">
       <ul>
         <li>eCommerce</li>
-        <li>XXXXXXXXXX</li>
+        <li>Av. Eduardo Madero 1020</li>
       </ul>
     </footer>
   );

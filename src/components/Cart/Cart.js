@@ -9,7 +9,7 @@ export const Cart = () => {
 
   return (
     <div className="cart">
-      <Link to="/cart">
+      <Link to="/cart" style={{ textDecoration: "none" }}>
         <FaShoppingCart />
         <span>{cantItems()}</span>
       </Link>

@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { ItemCount } from "../ItemCount/ItemCount";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, Box } from "@mui/material";
 import { useCounter } from "../hooks/useCounter";
 import { CartContext } from "../../context/CartContext";
+import "./ItemDetail.scss";
 
 export const ItemDetail = ({ item }) => {
   const { agregarACart, isInCart } = useContext(CartContext);
@@ -31,25 +32,45 @@ export const ItemDetail = ({ item }) => {
   };
 
   return (
-    <div>
+    <div className="itemDetail">
       <img src={item.image} alt={item.nombre} />
-      <h2>Producto: {item.nombre}</h2>
-      <p>Precio: ${item.precio}</p>
-      <p>Descripcion: {item.descripcion}</p>
+      <div className="texto">
+        <h2>Producto: {item.nombre}</h2>
+        <p>
+          <strong>Precio:</strong> ${item.precio}
+        </p>
+        <p>
+          <strong>Descripcion:</strong> {item.descripcion}
+        </p>
 
-      {!isInCart(item.id) ? (
-        <ItemCount
-          incrementar={incrementar}
-          decrementar={decrementar}
-          add={handleAgregar}
-          counter={counter}
-          max={item.stock}
-        />
-      ) : (
-        <Button onClick={handleCart}>Terminar mi compra.</Button>
-      )}
+        <div className="accionItemDetail">
+          {!isInCart(item.id) ? (
+            <ItemCount
+              incrementar={incrementar}
+              decrementar={decrementar}
+              add={handleAgregar}
+              counter={counter}
+              max={item.stock}
+            />
+          ) : (
+            <Box sx={{ m: 1 }}>
+              <Button
+                onClick={handleCart}
+                variant="outlined"
+                style={{ margin: 0.5 }}
+              >
+                Terminar mi compra
+              </Button>
+            </Box>
+          )}
 
-      <Button onClick={handleVolver}>VOLVER</Button>
+          <Box sx={{ m: 1 }}>
+            <Button onClick={handleVolver} variant="outlined" className="boton">
+              Volver
+            </Button>
+          </Box>
+        </div>
+      </div>
     </div>
   );
 };

@@ -6,20 +6,30 @@ const NavBar = () => {
   return (
     <header className="navbar">
       <h1>
-        <Link to="/">e-Commerce</Link>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          e-Commerce
+        </Link>
       </h1>
       <nav>
         <ul>
           <li>
-            <Link to="/category/remeras">Remeras</Link>
+            <Link to="/category/remeras" style={{ textDecoration: "none" }}>
+              Remeras
+            </Link>
           </li>
           <li>
-            <Link to="/category/buzos">Buzos</Link>
+            <Link to="/category/buzos" style={{ textDecoration: "none" }}>
+              Buzos
+            </Link>
           </li>
           <li>
-            <Link to="/category/zapatillas">Zapatillas</Link>
+            <Link to="/category/zapatillas" style={{ textDecoration: "none" }}>
+              Zapatillas
+            </Link>
           </li>
-          <Cart />
+          <li>
+            <Cart />
+          </li>
         </ul>
       </nav>
     </header>

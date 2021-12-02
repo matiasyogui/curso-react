@@ -2,11 +2,21 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  color: white;
+  text-align: center;
   background-color: pink;
+  text-decoration: none;
 
   ul {
     display: flex;
     list-style-type: none;
+    justify-content: space-around;
+
+    li {
+      margin-left: 1rem;
+    }
+
+    li:hover {
+      opacity: 0.6;
+    }
   }
 }

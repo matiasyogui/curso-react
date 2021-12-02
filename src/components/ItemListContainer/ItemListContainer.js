@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { Loader } from "../Loader/Loader";
 import { collection, getDocs, query, where } from "firebase/firestore/lite";
 import { db } from "../../firebase/config";
+import "./ItemListContainer.scss";
 
 const ItemListContainer = (/* props */) => {
   /* Se puede desestructurar props en el parametro 
@@ -43,12 +44,10 @@ const ItemListContainer = (/* props */) => {
   }, [params.categoryid]);
 
   return (
-    <div>
+    <div class="productos">
       <h2>Productos</h2>
       <hr />
-      <div className="itemList">
-        {loading ? <Loader /> : <ItemList items={items} />}
-      </div>
+      <div>{loading ? <Loader /> : <ItemList items={items} />}</div>
     </div>
   );
 };

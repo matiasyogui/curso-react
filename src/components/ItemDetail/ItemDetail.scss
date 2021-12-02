@@ -1,0 +1,14 @@
+.itemDetail {
+  display: flex;
+  justify-content: center;
+
+  img {
+    margin: 1rem;
+  }
+
+  .accionItemDetail {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}

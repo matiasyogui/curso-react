@@ -3,11 +3,11 @@ import { CartContext } from "../../context/CartContext";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+import { Button, Box } from "@mui/material";
 import { useNavigate } from "react-router";
-
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import "./CartView.scss";
 
 export const CartView = () => {
   const { cart, precioTotalItem, totalComprado, vaciarCarrito, eliminarItem } =
@@ -20,8 +20,9 @@ export const CartView = () => {
   };
 
   return (
-    <div>
+    <div className="cartView">
       <h2>CartView</h2>
+      <hr />
 
       {cart.map((item) => (
         <div key={item.id}>
@@ -55,13 +56,24 @@ export const CartView = () => {
       {cart.length > 0 ? (
         <>
           <h4>Total comprado: ${totalComprado()}</h4>
-          <Button variant="contained" color="secondary" onClick={vaciarCarrito}>
-            Vaciar carrito
-          </Button>
-
-          <Button variant="contained" color="success" onClick={handleCheckout}>
-            Terminar mi compra
-          </Button>
+          <Box component="span" sx={{ p: 2 }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={vaciarCarrito}
+            >
+              Vaciar carrito
+            </Button>
+          </Box>
+          <Box component="span" sx={{ p: 2 }}>
+            <Button
+              variant="contained"
+              color="success"
+              onClick={handleCheckout}
+            >
+              Terminar mi compra
+            </Button>
+          </Box>
         </>
       ) : (
         <>

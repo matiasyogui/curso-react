@@ -6,10 +6,11 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import "./Item.scss";
 
 export const Item = ({ item }) => {
   return (
-    <div>
+    <div className="item">
       <Card sx={{ maxWidth: 345 }}>
         <CardMedia
           component="img"

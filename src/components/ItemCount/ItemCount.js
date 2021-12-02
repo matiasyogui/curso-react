@@ -1,34 +1,45 @@
-import Button from "@mui/material/Button";
+import { Button, Box } from "@mui/material";
 
 export const ItemCount = ({ incrementar, decrementar, add, counter, max }) => {
   return (
-    <div>
-      <Button
-        variant={"outlined"}
-        color={counter === 0 && "error"}
-        onClick={decrementar}
-      >
-        -
-      </Button>
-      <span>{counter}</span>
-      <Button
-        variant="outlined"
-        color={counter === max && "error"}
-        onClick={incrementar}
-      >
-        +
-      </Button>
-      <div>
-        {counter === 0 ? (
-          <Button variant="contained" onClick={add} disabled>
-            Agregar
+    <>
+      <div className="boton">
+        <Box component="span" sx={{ p: 2 }}>
+          <Button
+            variant={"outlined"}
+            color={counter === 0 && "error"}
+            onClick={decrementar}
+          >
+            -
           </Button>
-        ) : (
-          <Button variant="contained" onClick={add}>
-            Agregar
+        </Box>
+
+        <span>{counter}</span>
+
+        <Box component="span" sx={{ p: 2 }}>
+          <Button
+            variant="outlined"
+            color={counter === max && "error"}
+            onClick={incrementar}
+          >
+            +
           </Button>
-        )}
+        </Box>
       </div>
-    </div>
+
+      {counter === 0 ? (
+        <Box sx={{ m: 2 }}>
+          <Button variant="contained" onClick={add} disabled className="boton">
+            Agregar
+          </Button>
+        </Box>
+      ) : (
+        <Box sx={{ m: 2 }}>
+          <Button variant="contained" onClick={add} className="boton">
+            Agregar
+          </Button>
+        </Box>
+      )}
+    </>
   );
 };

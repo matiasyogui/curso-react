@@ -1,0 +1,9 @@
+.item {
+  margin: 1rem 0;
+  transition: scale 300ms;
+  box-shadow: 0.5rem 0.5rem 10px rgb(206, 206, 206);
+
+  &:hover {
+    scale: (1.05);
+  }
+}

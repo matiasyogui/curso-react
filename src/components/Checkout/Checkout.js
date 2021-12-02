@@ -14,6 +14,7 @@ import {
 import { db } from "../../firebase/config";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import "./Checkout.scss";
 
 export const Checkout = () => {
   const { cart, totalComprado, vaciarCarrito } = useContext(CartContext);
@@ -86,7 +87,7 @@ export const Checkout = () => {
   };
 
   return (
-    <div>
+    <div className="checkout">
       <h2>Finalizar la compra</h2>
       <hr />
 
@@ -99,12 +100,13 @@ export const Checkout = () => {
         </>
       ) : (
         <>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="form">
             <TextField
               required
               id="outlined-required"
               label="Nombre completo"
               onChange={(e) => setNombre(e.target.value)} //handleNombre
+              sx={{ m: 2 }}
             />
             <TextField
               required
@@ -112,14 +114,21 @@ export const Checkout = () => {
               label="Email"
               type="email"
               onChange={(e) => setEmail(e.target.value)} //handleEmail
+              sx={{ m: 2 }}
             />
             <TextField
               required
               id="outlined-required"
-              label="telefono"
+              label="Telefono"
               onChange={(e) => setTel(e.target.value)} //handleTel
+              sx={{ m: 2 }}
             />
-            <Button variant="contained" color="success" type="submit">
+            <Button
+              variant="contained"
+              color="success"
+              type="submit"
+              sx={{ m: 2 }}
+            >
               Finalizar
             </Button>
           </form>
