@@ -67,7 +67,7 @@ export const Checkout = () => {
         }
       });
 
-      if (sinStock === 0) {
+      if (sinStock.length === 0) {
         batch.commit();
         addDoc(orders, orden).then((resp) => {
           setOrden({
