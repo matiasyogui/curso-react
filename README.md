@@ -1,4 +1,10 @@
 # Proyecto final para el curso de React.
-eCommerce de celulares, cuenta con un listado de los productos, filtrado de los productos por marcas, carrito de compras, confirmacion de la compra y persistencia de los datos en FireBase.
+eCommerce de celulares donde se deplagara lo aprendido en el curso. Cuenta con : 
+* Listado de los productos
+* Filtrado de los productos por marcas
+* Pagina de detalles del producto ademas de poder seleccionar cuantas unidades se quiere comprar
+* Carrito de compras
+* Confirmacion de la compra
+* Persistencia de los datos en FireBase.
 
-Link al proyecto deployado en netlify:  [](celuares-commerce-react.netlify.app/) 
+[Link](celuares-commerce-react.netlify.app/) al proyecto deployado en netlify
